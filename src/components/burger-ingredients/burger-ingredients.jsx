@@ -1,11 +1,13 @@
-import React from "react";
+import { useState } from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import IngredientList from "../ingredient-list/ingredient-list";
 import styles from "./burger-ingredients.module.css";
+import PropTypes from 'prop-types';
 
 
 function BurgerIngredients({ ingredients }) {
-    const [current, setCurrent] = React.useState('bun')
+    //const [current, setCurrent] = React.useState('bun')
+    const [current, setCurrent] = useState('bun')
 
     return (
         <section className={styles.ingredients}>
@@ -23,3 +25,7 @@ function BurgerIngredients({ ingredients }) {
 }
 
 export default BurgerIngredients
+
+BurgerIngredients.propTypes = {
+    ingredients: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
+}

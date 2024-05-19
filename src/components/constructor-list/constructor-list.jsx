@@ -1,5 +1,6 @@
 import styles from './constructor-list.module.css'
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from 'prop-types';
 
 function ConstructorList({ data }) {
     return (
@@ -22,3 +23,7 @@ function ConstructorList({ data }) {
 }
 
 export default ConstructorList
+
+ConstructorList.propTypes = {
+    data: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
+}

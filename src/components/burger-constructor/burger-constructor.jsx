@@ -1,7 +1,7 @@
-import React from 'react';
 import styles from './burger-constructor.module.css';
 import { ConstructorElement, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import ConstructorList from '../constructor-list/constructor-list'
+import PropTypes from 'prop-types';
 
 function BurgerConstructor({ ingredients }) {
     const bun = ingredients.find(item => item.type === 'bun');
@@ -34,10 +34,14 @@ function BurgerConstructor({ ingredients }) {
                     {total}
                     <CurrencyIcon />
                 </span>
-                <Button>Оформить заказ</Button>
+                <Button htmlType="button">Оформить заказ</Button>
             </div>
         </section>
     );
 }
 
 export default BurgerConstructor
+
+BurgerConstructor.propTypes = {
+    ingredients: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
+}

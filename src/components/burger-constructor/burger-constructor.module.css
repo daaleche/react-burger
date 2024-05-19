@@ -7,7 +7,7 @@
 }
 
 .scroller {
-    max-height: 400px;
+    max-height: 500px;
     overflow-y: auto;
     scrollbar-color: #8585AD #2F2F37;
     scrollbar-width: thin;
