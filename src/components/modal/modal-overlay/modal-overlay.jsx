@@ -15,7 +15,7 @@ export default function ModalOverlay({ isOpen, onClick }) {
         return () => {
             document.removeEventListener("click", handleOverlayClick);
         };
-    },);
+    }, [onClick]);
 
     return (
         <div className={isOpen ? `${styles.overlay} ${styles.overlay_open}` : styles.overlay}

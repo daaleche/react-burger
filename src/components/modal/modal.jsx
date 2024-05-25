@@ -4,6 +4,7 @@ import styles from './modal.module.css';
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import ModalOverlay from './modal-overlay/modal-overlay';
 import PropTypes from 'prop-types';
+import { ESCAPE_KEY } from '../../utils/constants'
 
 const modalRoot = document.getElementById('modal-root');
 
@@ -11,7 +12,7 @@ export default function Modal({ title, isOpen, onClose, children }) {
   useEffect(() => {
     const handleEsc = (e) => {
       //Escape
-      if (e.keyCode === 27) {
+      if (e.keyCode === ESCAPE_KEY) {
         onClose(e);
       }
     }
@@ -20,7 +21,7 @@ export default function Modal({ title, isOpen, onClose, children }) {
     return () => {
       window.removeEventListener("keydown", handleEsc)
     };
-  },);
+  }, [onClose]);
 
   return ReactDOM.createPortal(
     <div className={styles.container}>
