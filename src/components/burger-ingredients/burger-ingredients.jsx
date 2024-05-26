@@ -3,10 +3,9 @@ import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import IngredientList from "../ingredient-list/ingredient-list";
 import styles from "./burger-ingredients.module.css";
 import PropTypes from 'prop-types';
+import { IngredientPropTypes } from '../../utils/utils';
 
-
-function BurgerIngredients({ ingredients }) {
-    //const [current, setCurrent] = React.useState('bun')
+export default function BurgerIngredients({ ingredients }) {
     const [current, setCurrent] = useState('bun')
 
     return (
@@ -24,8 +23,6 @@ function BurgerIngredients({ ingredients }) {
     )
 }
 
-export default BurgerIngredients
-
 BurgerIngredients.propTypes = {
-    ingredients: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
+    ingredients: PropTypes.arrayOf(IngredientPropTypes.isRequired).isRequired
 }

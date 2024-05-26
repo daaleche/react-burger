@@ -1,7 +1,7 @@
 import styles from './nav-item.module.css'
 import PropTypes from 'prop-types';
 
-function NavItem({ children, text }) {
+export default function NavItem({ children, text }) {
     return (
         <div className={styles.navlink}>
             {children}
@@ -9,8 +9,6 @@ function NavItem({ children, text }) {
         </div>
     )
 }
-
-export default NavItem
 
 NavItem.propTypes = {
     children: PropTypes.element,

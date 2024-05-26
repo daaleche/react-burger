@@ -1,8 +1,9 @@
 import styles from './constructor-list.module.css'
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from 'prop-types';
+import { IngredientPropTypes } from '../../utils/utils';
 
-function ConstructorList({ data }) {
+export default function ConstructorList({ data }) {
     return (
         <ul className={styles.main_container}>
             {data.map((item) => (
@@ -15,15 +16,12 @@ function ConstructorList({ data }) {
                             thumbnail={item.image}
                         />
                     </div>
-                </li>
-            ))
+                </li>))
             }
         </ul>
     )
 }
 
-export default ConstructorList
-
 ConstructorList.propTypes = {
-    data: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
+    data: PropTypes.arrayOf(IngredientPropTypes.isRequired).isRequired
 }
