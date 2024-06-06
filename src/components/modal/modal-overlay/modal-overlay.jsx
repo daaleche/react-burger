@@ -1,8 +1,8 @@
 import { useRef, useEffect } from "react";
-import styles from './modal-overlay.module.css';
 import PropTypes from 'prop-types';
+import styles from './modal-overlay.module.css';
 
-export default function ModalOverlay({ isOpen, onClick }) {
+export default function ModalOverlay({ onClick }) {
     const overlay = useRef(null)
     useEffect(() => {
         const handleOverlayClick = (e) => {
@@ -18,13 +18,10 @@ export default function ModalOverlay({ isOpen, onClick }) {
     }, [onClick]);
 
     return (
-        <div className={isOpen ? `${styles.overlay} ${styles.overlay_open}` : styles.overlay}
-            ref={overlay}>
-        </div>
+        <div className={styles.overlay} ref={overlay} />
     );
 }
 
 ModalOverlay.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
     onClick: PropTypes.func.isRequired
 }

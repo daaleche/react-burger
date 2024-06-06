@@ -1,14 +1,14 @@
 import { useEffect } from "react";
 import ReactDOM from 'react-dom';
-import styles from './modal.module.css';
-import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import ModalOverlay from './modal-overlay/modal-overlay';
 import PropTypes from 'prop-types';
+import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import styles from './modal.module.css';
+import ModalOverlay from './modal-overlay/modal-overlay';
 import { ESCAPE_KEY } from '../../utils/constants'
 
 const modalRoot = document.getElementById('modal-root');
 
-export default function Modal({ title, isOpen, onClose, children }) {
+export default function Modal({ title, onClose, children }) {
   useEffect(() => {
     const handleEsc = (e) => {
       //Escape
@@ -32,7 +32,7 @@ export default function Modal({ title, isOpen, onClose, children }) {
         </span>
         {children}
       </div>
-      <ModalOverlay isOpen={isOpen} onClick={onClose} />
+      <ModalOverlay onClick={onClose} />
     </div>
     , modalRoot
   )
@@ -41,7 +41,6 @@ export default function Modal({ title, isOpen, onClose, children }) {
 
 Modal.propTypes = {
   title: PropTypes.string,
-  isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
 }
