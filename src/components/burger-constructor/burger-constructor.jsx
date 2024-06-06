@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useDrop } from "react-dnd";
+import { v4 as new_uuid } from 'uuid';
 import { ConstructorElement, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './burger-constructor.module.css';
 import ConstructorList from '../constructor-list/constructor-list'
@@ -33,7 +34,7 @@ export default function BurgerConstructor() {
         drop(item) {
             dispatch({
                 type: ADD_INGREDIENT,
-                ingredient: item
+                ingredient: { ...item, uuid: new_uuid() }
             })
         },
     });
