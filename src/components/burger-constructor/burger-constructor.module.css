@@ -3,7 +3,7 @@
     composes: ml-5 pt-25 from global;
     display: flex;
     flex-direction: column;
-
+    justify-content: space-between;
 }
 
 .scroller {

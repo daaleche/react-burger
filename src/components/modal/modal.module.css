@@ -5,10 +5,9 @@
     border-radius: 40px;
     display: flex;
     align-items: center;
-   
     flex-direction: column;
-    position: relative;
-    z-index: 1;
+    position: fixed;
+    z-index: 15;
     overflow: hidden;
 }
 
