@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 import { useDrop } from "react-dnd";
 import { v4 as new_uuid } from 'uuid';
 import { ConstructorElement, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -9,9 +10,11 @@ import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-detail'
 import { ADD_INGREDIENT } from "../../services/actions/burger-constructor";
 import { CLOSE_ORDER_DETAIL_MODAL, postOrder } from "../../services/actions/order-details";
+import { getRefreshToken } from '../../utils/utils'
 
 export default function BurgerConstructor() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const { ingredients, bun } = useSelector(state => state.burgerConstructor);
     const orderDetailModalIsOpen = useSelector(state => state.orderDetails.modalIsOpen);
@@ -25,8 +28,13 @@ export default function BurgerConstructor() {
     };
 
     function handlePostOrder() {
-        const orderIds = [bun._id, bun._id, ...ingredients.map((item) => item._id)];
-        dispatch(postOrder(orderIds));
+        if (getRefreshToken()) {
+            const orderIds = [bun._id, bun._id, ...ingredients.map((item) => item._id)];
+            dispatch(postOrder(orderIds));
+        }
+        else {
+            navigate('/login');
+        }
     }
 
     const [, dropRef] = useDrop({

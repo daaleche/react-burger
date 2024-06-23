@@ -1,31 +1,73 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import { useDispatch, useSelector } from "react-redux";
+import { Route, BrowserRouter, Routes, useLocation, useHistory, useNavigate } from 'react-router-dom'
 import AppHeader from "../app-header/app-header";
 import styles from './app.module.css'
-import BurgerIngredients from "../burger-ingredients/burger-ingredients";
-import BurgerConstructor from "../burger-constructor/burger-constructor";
 import { getIngredients } from "../../services/actions/burger-ingredients";
+import { getUser } from "../../services/actions/profile";
+import HomePage from "../../pages/home/home";
+import LoginPage from "../../pages/login/login"
+import RegisterPage from "../../pages/register/register"
+import ForgotPasswordPage from "../../pages/forgot-password/forgot-password"
+import ResetPasswordPage from "../../pages/reset-password/reset-password"
+import ProfilePage from "../../pages/profile/profile"
+import ProfileOrdersPage from "../../pages/profile-orders/profile-orders"
+import ProtectedRouteAuthorized from "../protected-route/protected-route-authorized"
+import ProtectedRouteNotAuthorized from "../protected-route/protected-route-not-authorized"
+import IngredientPage from "../../pages/ingredient/ingredient"
+import {
+  OPEN_INGREDIENT_DETAIL_MODAL,
+  CLOSE_INGREDIENT_DETAIL_MODAL,
+  UNSELECT_INGREDIENT,
+  selectIngredient
+} from "../../services/actions/ingredient-details";
+import Modal from '../modal/modal'
+import IngredientDetails from '../ingredient-details/ingredient-details';
 
-function App() {
+export default function App() {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const modal = location.state && location.state.fromCardClick;
+
+  const ingredientDetailModalIsOpen = useSelector(state => state.ingredientDetails.modalIsOpen);
+
+  const handleClose = (e) => {
+    e.stopPropagation();
+    dispatch({ type: CLOSE_INGREDIENT_DETAIL_MODAL });
+    dispatch({ type: UNSELECT_INGREDIENT });
+    navigate(-1)
+  };
 
   useEffect(() => {
-    dispatch(getIngredients())
+    dispatch(getIngredients());
   }, [dispatch]);
 
   return (
     <>
       <AppHeader />
-      <div className={styles.main}>
-        <DndProvider backend={HTML5Backend}>
-          <BurgerIngredients />
-          <BurgerConstructor />
-        </DndProvider>
-      </div>
+
+      <Routes location={ingredientDetailModalIsOpen ? modal : location}>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/login' element={<ProtectedRouteAuthorized element={<LoginPage />} />} />
+        <Route path='/register' element={<ProtectedRouteAuthorized element={<RegisterPage />} />} />
+        <Route path='/forgot-password' element={<ProtectedRouteAuthorized element={<ForgotPasswordPage />} />} />
+        <Route path='/reset-password' element={<ProtectedRouteAuthorized element={<ResetPasswordPage />} />} />
+        <Route path='/profile' element={<ProtectedRouteNotAuthorized element={<ProfilePage />} />} />
+        <Route path='/profile/orders' element={<ProtectedRouteNotAuthorized element={<ProfileOrdersPage />} />} />
+        <Route path="/ingredients/:id" element={<IngredientPage />} />
+
+      </Routes>
+
+      {ingredientDetailModalIsOpen && (
+        <Routes>
+          <Route path="/ingredients/:id" element={
+            <Modal title='Детали ингредиента' onClose={handleClose}>
+              <IngredientDetails />
+            </Modal>} />
+        </Routes>
+      )}
     </>
   );
 }
-
-export default App;
