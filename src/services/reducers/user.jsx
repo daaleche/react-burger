@@ -38,6 +38,7 @@ import {
 } from '../actions/profile'
 
 const initialState = {
+    isAuth: false,
     user: {
         name: '',
         email: '',
@@ -90,6 +91,7 @@ export const userReducer = (state = initialState, action) => {
                     name: action.user.name,
                     email: action.user.email,
                 },
+                isAuth: true
             }
         }
         case POST_REGISTER_FAILED: {
@@ -117,6 +119,7 @@ export const userReducer = (state = initialState, action) => {
                     name: action.user.name,
                     email: action.user.email,
                 },
+                isAuth: true
             }
         }
         case POST_LOGIN_FAILED: {
@@ -211,7 +214,8 @@ export const userReducer = (state = initialState, action) => {
                     ...state.user,
                     name: action.user.name,
                     email: action.user.email,
-                }
+                },
+                isAuth: true
             }
         }
         case GET_USER_FAILED: {
@@ -219,6 +223,7 @@ export const userReducer = (state = initialState, action) => {
                 ...state,
                 getUserRequest: false,
                 getUserFailed: true,
+                isAuth: false
             }
         }
         case REFRESH_TOKEN_REQUEST: {
@@ -234,6 +239,7 @@ export const userReducer = (state = initialState, action) => {
             return {
                 ...state,
                 refreshTokenRequest: false,
+                isAuth: true
             }
         }
         case REFRESH_TOKEN_FAILED: {
@@ -241,6 +247,7 @@ export const userReducer = (state = initialState, action) => {
                 ...state,
                 refreshTokenRequest: false,
                 refreshTokenFailed: true,
+                isAuth: false
             }
         }
         case LOGOUT_REQUEST: {
@@ -248,6 +255,7 @@ export const userReducer = (state = initialState, action) => {
                 ...state,
                 logoutRequest: true,
                 logoutFailed: false,
+                isAuth: false
             }
         }
         case LOGOUT_SUCCESS: {

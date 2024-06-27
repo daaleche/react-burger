@@ -28,20 +28,17 @@ export function editProfile(data) {
                     type: EDIT_PROFILE_SUCCESS,
                     user: res.user
                 });
-
-                console.log(res.message);
             })
             .catch((err) => {
                 if (err.message === 'jwt expired') {
                     dispatch(refreshToken());
+                    dispatch(editProfile(data));
                 } else {
                     dispatch({
                         type: EDIT_PROFILE_FAILED,
                         message: err.message
                     });
                 }
-
-                console.log(err.message);
             })
     };
 }
@@ -67,8 +64,6 @@ export function getUser() {
                         message: err.message
                     });
                 }
-
-                console.log(err.message);
             })
     };
 }
@@ -89,8 +84,6 @@ export function refreshToken() {
 
                 setCookie('accessToken', res.accessToken);
                 localStorage.setItem('refreshToken', res.refreshToken);
-
-                console.log(res.message);
             })
             .catch((err) => {
                 if (err.message === 'jwt expired') {
@@ -101,8 +94,6 @@ export function refreshToken() {
                         message: err.message
                     });
                 }
-
-                console.log(err.message);
             })
     };
 }
@@ -120,8 +111,6 @@ export function logout() {
 
                 deleteCookie('accessToken');
                 localStorage.removeItem('refreshToken');
-
-                console.log(res.message);
             })
             .catch((err) => {
                 dispatch({
@@ -131,8 +120,6 @@ export function logout() {
 
                 deleteCookie('accessToken');
                 localStorage.removeItem('refreshToken');
-
-                console.log(err.message);
             })
     };
 }

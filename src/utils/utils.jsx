@@ -45,9 +45,3 @@ export function setCookie(name, value, props) {
 export function deleteCookie(name) {
   setCookie(name, null, { expires: -1 });
 }
-
-export function getRefreshToken() {
-  return ((localStorage.getItem('refreshToken') !== undefined) &&
-    (localStorage.getItem('refreshToken') !== '') &&
-    (localStorage.getItem('refreshToken')))
-}

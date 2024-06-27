@@ -39,11 +39,13 @@ export default function LoginPage() {
                     placeholder='E-mail'
                     onChange={onChange}
                     error={loginFailed}
+                    autoComplete='on'
                 />
                 <PasswordInput
                     name='password'
                     value={form.password}
-                    onChange={onChange} />
+                    onChange={onChange}
+                    autoComplete='on' />
                 <span>
                     <Button htmlType="submit">Войти</Button>
                 </span>

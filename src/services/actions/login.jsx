@@ -20,15 +20,11 @@ export function postLogin(data) {
 
                 setCookie('accessToken', res.accessToken);
                 localStorage.setItem('refreshToken', res.refreshToken);
-
-                console.log(res.message);
             })
             .catch((err) => {
                 dispatch({
                     type: POST_LOGIN_FAILED
                 });
-
-                console.log(err.message);
             })
     };
 }

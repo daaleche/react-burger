@@ -10,7 +10,6 @@ import Modal from '../modal/modal'
 import OrderDetails from '../order-details/order-detail'
 import { ADD_INGREDIENT } from "../../services/actions/burger-constructor";
 import { CLOSE_ORDER_DETAIL_MODAL, postOrder } from "../../services/actions/order-details";
-import { getRefreshToken } from '../../utils/utils'
 
 export default function BurgerConstructor() {
     const dispatch = useDispatch();
@@ -18,6 +17,7 @@ export default function BurgerConstructor() {
 
     const { ingredients, bun } = useSelector(state => state.burgerConstructor);
     const orderDetailModalIsOpen = useSelector(state => state.orderDetails.modalIsOpen);
+    const isAuth = useSelector(store => store.userData.isAuth);
 
     const totalPrice = useMemo(() => {
         return ingredients.reduce((acc, p) => acc + p.price, 0) + ((bun && bun.price) ? bun.price * 2 : 0)
@@ -28,7 +28,7 @@ export default function BurgerConstructor() {
     };
 
     function handlePostOrder() {
-        if (getRefreshToken()) {
+        if (isAuth) {
             const orderIds = [bun._id, bun._id, ...ingredients.map((item) => item._id)];
             dispatch(postOrder(orderIds));
         }

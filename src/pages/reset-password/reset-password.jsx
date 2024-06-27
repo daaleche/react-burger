@@ -32,13 +32,15 @@ export default function ResetPasswordPage() {
                     name='password'
                     placeholder='Введите новый пароль'
                     value={formValue.password}
-                    onChange={onChange} />
+                    onChange={onChange} 
+                    autoComplete='on'/>
                 <Input
                     type="text"
                     placeholder="Введите код из письма"
                     name="token"
                     value={formValue.token}
                     onChange={onChange}
+                    autoComplete='on'
                 />
                 <span>
                     <Button htmlType="submit">Сохранить</Button>

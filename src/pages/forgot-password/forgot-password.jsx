@@ -19,7 +19,6 @@ export default function ForgotPasswordPage() {
     const onSubmit = (e) => {
         e.preventDefault();
         dispatch(postForgotPassword(email))
-        //setEmail("");
     }
 
     if (forgotPasswordSuccess) {
@@ -37,6 +36,7 @@ export default function ForgotPasswordPage() {
                     value={email}
                     onChange={onChange}
                     error={forgotPasswordFailed}
+                    autoComplete='on'
                 />
                 <span >
                     <Button htmlType="submit">Восстановить</Button>

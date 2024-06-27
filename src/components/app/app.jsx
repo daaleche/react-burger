@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, BrowserRouter, Routes, useLocation, useHistory, useNavigate } from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import AppHeader from "../app-header/app-header";
-import styles from './app.module.css'
 import { getIngredients } from "../../services/actions/burger-ingredients";
 import { getUser } from "../../services/actions/profile";
 import HomePage from "../../pages/home/home";
@@ -16,10 +15,8 @@ import ProtectedRouteAuthorized from "../protected-route/protected-route-authori
 import ProtectedRouteNotAuthorized from "../protected-route/protected-route-not-authorized"
 import IngredientPage from "../../pages/ingredient/ingredient"
 import {
-  OPEN_INGREDIENT_DETAIL_MODAL,
   CLOSE_INGREDIENT_DETAIL_MODAL,
-  UNSELECT_INGREDIENT,
-  selectIngredient
+  UNSELECT_INGREDIENT
 } from "../../services/actions/ingredient-details";
 import Modal from '../modal/modal'
 import IngredientDetails from '../ingredient-details/ingredient-details';
@@ -42,6 +39,7 @@ export default function App() {
 
   useEffect(() => {
     dispatch(getIngredients());
+    dispatch(getUser());
   }, [dispatch]);
 
   return (

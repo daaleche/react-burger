@@ -55,6 +55,7 @@ export default function ProfileForm() {
                 value={formData.name}
                 placeholder="Имя"
                 onChange={onChange}
+                autoComplete='on'
             />
             <Input
                 icon={'EditIcon'}
@@ -63,6 +64,7 @@ export default function ProfileForm() {
                 value={formData.email}
                 placeholder="Логин"
                 onChange={onChange}
+                autoComplete='on'
             />
             <Input
                 icon={'EditIcon'}
@@ -71,11 +73,12 @@ export default function ProfileForm() {
                 value={formData.password}
                 placeholder="Пароль"
                 onChange={onChange}
+                autoComplete='on'
             />
             {isEditable && (
                 <span className={styles.button}>
-                    <Button>Сохранить</Button>
-                    <Button size='medium' type='secondary' onClick={onCancel}>Отмена</Button>
+                    <Button htmlType="submit">Сохранить</Button>
+                    <Button htmlType="button" size='medium' type='secondary' onClick={onCancel}>Отмена</Button>
                 </span>
             )}
         </form>

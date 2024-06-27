@@ -35,6 +35,7 @@ export default function RegisterPage() {
                     value={formData.name}
                     onChange={onChange}
                     error={registerFailed}
+                    autoComplete='on'
                 />
                 <Input
                     type="email"
@@ -43,11 +44,13 @@ export default function RegisterPage() {
                     value={formData.email}
                     onChange={onChange}
                     error={registerFailed}
+                    autoComplete='on'
                 />
                 <PasswordInput
                     name='password'
                     value={formData.password}
-                    onChange={onChange} />
+                    onChange={onChange} 
+                    autoComplete='on'/>
                 <span className={styles.button}>
                     <Button htmlType="submit">Зарегистрироваться</Button>
                 </span>

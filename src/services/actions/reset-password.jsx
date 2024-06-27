@@ -14,14 +14,11 @@ export function postResetPassword(data) {
                 dispatch({
                     type: POST_RESET_PASSWORD_SUCCESS,
                 });
-
-                console.log(res.message);
             })
             .catch((err) => {
                 dispatch({
                     type: POST_RESET_PASSWORD_FAILED,
                 });
-                console.log(err.message);
             })
     }
 }

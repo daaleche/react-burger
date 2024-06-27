@@ -1,10 +1,14 @@
-import { Navigate } from 'react-router-dom'
+import { useSelector } from "react-redux";
+import { Navigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
-import { getRefreshToken } from '../../utils/utils'
 
 export default function ProtectedRouteAuthorized({ element }) {
-    if (getRefreshToken())
-        return <Navigate to={'/profile'} />
+    const location = useLocation();
+    const isAuth = useSelector(store => store.userData.isAuth);
+
+    if (isAuth) {
+        return <Navigate to="/profile" state={{ from: location }} />;
+    }
 
     return element;
 }

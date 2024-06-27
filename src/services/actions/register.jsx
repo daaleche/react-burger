@@ -19,14 +19,11 @@ export function postRegister(data) {
 
                 setCookie('accessToken', res.accessToken);
                 localStorage.setItem('refreshToken', res.refreshToken);
-
-                console.log(res.message);
             })
             .catch((err) => {
                 dispatch({
                     type: POST_REGISTER_FAILED
                 });
-                console.log(err.message);
             })
     };
 }
