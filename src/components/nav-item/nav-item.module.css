@@ -3,9 +3,9 @@
   justify-content: left;
   align-items: center;
   width: max-content;
-  cursor: pointer;
-  color: #8585ad;
+  text-decoration: none;
   composes: pl-5 pt-4 pr-5 pb-4 from global;
+  color: var(--text-inactive-color);
 }
 
 .navlink:hover {
@@ -14,4 +14,20 @@
 
 .text {
   composes: text text_type_main-default ml-2 from global;
+}
+
+.active {
+  color: var(--text-primary-color);
+  text-decoration: none;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  line-height: 24px;
+  text-decoration: none;
+  color: #f2f2f3;
+  composes: ml-2 mt-4 mb-4 pt-4 pb-4 pr-5 pl-5 text text_type_main-default from global;
+  color: var(--text-inactive-color);
 }

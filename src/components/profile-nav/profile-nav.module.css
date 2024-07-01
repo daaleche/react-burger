@@ -1,0 +1,32 @@
+.navmenu {
+    width: 320px;
+    composes: mr-15 from global;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+    composes: text text_type_main-medium mb-20 from global;
+}
+
+.menu_item {
+    height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    text-decoration: none;
+    color: var(--text-inactive-color);
+}
+
+.active {
+    text-decoration: none;
+    color: var(--text-primary-color);
+}
+
+.text {
+    composes: text text_type_main-default from global;
+    color: var(--text-inactive-color);
+    opacity: 0.4;
+}

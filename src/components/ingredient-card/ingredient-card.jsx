@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useDrag } from "react-dnd";
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './ingredient-card.module.css'
 import Modal from '../modal/modal'
@@ -14,18 +15,17 @@ import {
 
 export default function IngredientCard({ item }) {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const { counts, bun } = useSelector(store => store.burgerConstructor)
-    const ingredientDetailModalIsOpen = useSelector(state => state.ingredientDetails.modalIsOpen);
 
     const handleOpenModal = () => {
         dispatch(selectIngredient(item));
         dispatch({ type: OPEN_INGREDIENT_DETAIL_MODAL, });
+        navigate(`/ingredients/${item._id}`, { state: { fromCardClick: location } })
+
     }
-    const handleClose = (e) => {
-        dispatch({ type: CLOSE_INGREDIENT_DETAIL_MODAL });
-        dispatch({ type: UNSELECT_INGREDIENT });
-    };
 
     const [, dragRef] = useDrag({
         type: "ingredients",
@@ -45,11 +45,6 @@ export default function IngredientCard({ item }) {
                 <CurrencyIcon />
             </span>
             <p className={styles.text}>{item.name}</p>
-            {ingredientDetailModalIsOpen && (
-                <Modal title='Детали ингредиента' onClose={handleClose}>
-                    <IngredientDetails />
-                </Modal>)
-            }
         </article>
     )
 }

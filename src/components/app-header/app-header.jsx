@@ -1,9 +1,8 @@
+import { Logo, BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './app-header.module.css'
 import NavItem from '../nav-item/nav-item'
-import { Logo, BurgerIcon, ListIcon, ProfileIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 
-
-function AppHeader() {
+export default function AppHeader() {
     return (
         <header>
             <nav className={styles.navbar}>
@@ -11,12 +10,12 @@ function AppHeader() {
                     <li className={styles.menu_item}>
                         <ul className={styles.subitem}>
                             <li>
-                                <NavItem text="Конструктор" >
+                                <NavItem text="Конструктор" link={'/'}>
                                     <BurgerIcon />
                                 </NavItem>
                             </li>
                             <li>
-                                <NavItem text="Лента заказов" >
+                                <NavItem text="Лента заказов" link={'/feed'}>
                                     <ListIcon />
                                 </NavItem>
                             </li>
@@ -26,7 +25,7 @@ function AppHeader() {
                         <Logo />
                     </li>
                     <li className={styles.menu_item}>
-                        <NavItem text="Личный кабинет" >
+                        <NavItem text="Личный кабинет" link={'/profile'}>
                             <ProfileIcon />
                         </NavItem>
                     </li>
@@ -35,5 +34,3 @@ function AppHeader() {
         </header>
     );
 }
-
-export default AppHeader
