@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useDrag } from "react-dnd";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -8,17 +7,17 @@ import {
     OPEN_INGREDIENT_DETAIL_MODAL,
     selectIngredient
 } from "../../services/actions/ingredient-details";
-import { AppDispatch, RootState } from "../../services/store";
 import { TIngredientCard } from "../../types";
+import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 
 export const IngredientCard: FC<TIngredientCard> = ({ item }) => {
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const location = useLocation();
 
-    const { counts } = useSelector((store: RootState) => store.burgerConstructor)
+    const { counts } = useAppSelector(store => store.burgerConstructor)
 
-    const { bun } = useSelector((store: RootState) => store.burgerConstructor)
+    const { bun } = useAppSelector(store => store.burgerConstructor)
 
     const handleOpenModal = () => {
         dispatch(selectIngredient(item));

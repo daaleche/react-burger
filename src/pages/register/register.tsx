@@ -1,19 +1,18 @@
 import { ChangeEvent, FC, SyntheticEvent, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom'
 import { Button, Input, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components"
 import styles from './register.module.css';
 import { postRegister } from "../../services/actions/register";
-import { AppDispatch, RootState } from '../../services/store';
 import { TProfile } from '../../types';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 const defaultValue = { name: '', email: '', password: '' }
 
 export const RegisterPage: FC = () => {
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const [formData, setFormData] = useState<TProfile>(defaultValue);
-    const { registerFailed } = useSelector((store: RootState) => store.userData);
+    const { registerFailed } = useAppSelector(store => store.userData);
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         setFormData({

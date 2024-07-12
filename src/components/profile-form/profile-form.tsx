@@ -1,16 +1,15 @@
 import { useState, useEffect, FC, SyntheticEvent, ChangeEvent } from 'react'
-import { useDispatch, useSelector } from "react-redux";
 import { Input, Button } from "@ya.praktikum/react-developer-burger-ui-components"
 import styles from './profile-form.module.css'
 import { editProfile } from "../../services/actions/profile";
 import { getUser } from "../../services/actions/profile";
-import { AppDispatch, RootState } from '../../services/store';
 import { TProfile } from '../../types';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 export const ProfileForm: FC = () => {
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
-    const { name, email } = useSelector((store: RootState) => store.userData.user);
+    const { name, email } = useAppSelector(store => store.userData.user);
     const [formData, setFormData] = useState<TProfile>({ name: name, email: email, password: '' })
     const [isEditable, setIsEditable] = useState(false)
 

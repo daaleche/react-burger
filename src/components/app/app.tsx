@@ -1,5 +1,4 @@
 import { useEffect, FC, SyntheticEvent } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { AppHeader } from "../app-header/app-header";
 import { getIngredients } from "../../services/actions/burger-ingredients";
@@ -20,16 +19,16 @@ import {
 } from "../../services/actions/ingredient-details";
 import { Modal } from '../modal/modal'
 import { IngredientDetails } from '../ingredient-details/ingredient-details';
-import { AppDispatch, RootState } from "../../services/store";
+import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 
 export const App: FC = () => {
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
 
   const modal = location.state && location.state.fromCardClick;
 
-  const ingredientDetailModalIsOpen = useSelector((store: RootState) => store.ingredientDetails.modalIsOpen);
+  const ingredientDetailModalIsOpen = useAppSelector(store => store.ingredientDetails.modalIsOpen);
 
   const handleClose = (e: SyntheticEvent) => {
     e.stopPropagation();

@@ -1,17 +1,16 @@
 import { ChangeEvent, FC, SyntheticEvent, useState } from 'react'
-import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './login.module.css'
 import { postLogin } from "../../services/actions/login";
-import { AppDispatch, RootState } from '../../services/store';
 import { TLogin } from '../../types';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 export const LoginPage: FC = () => {
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const { loginSuccess, loginFailed } = useSelector((store: RootState) => store.userData);
+    const { loginSuccess, loginFailed } = useAppSelector(store => store.userData);
     const [form, setForm] = useState<TLogin>({ email: '', password: '' })
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {

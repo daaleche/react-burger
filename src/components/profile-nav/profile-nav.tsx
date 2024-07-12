@@ -1,13 +1,12 @@
 import { FC } from "react";
-import { useDispatch } from "react-redux";
 import { NavLink } from 'react-router-dom'
 import styles from './profile-nav.module.css'
 import { logout } from "../../services/actions/profile";
-import { AppDispatch } from "../../services/store";
 import { TProfileNav } from "../../types";
+import { useAppDispatch } from "../../utils/hooks";
 
 export const ProfileNav: FC<TProfileNav> = ({ text }) => {
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const onClick = () => {
         dispatch(logout())

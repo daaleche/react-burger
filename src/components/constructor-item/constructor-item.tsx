@@ -1,14 +1,13 @@
 import { FC, useRef } from 'react';
-import { useDispatch } from 'react-redux';
 import { DropTargetMonitor, useDrag, useDrop, XYCoord } from "react-dnd";
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from "./constructor-item.module.css";
 import { DELETE_INGREDIENT, MOVE_INGREDIENT } from '../../services/actions/burger-constructor'
 import { TConstructorItem } from '../../types';
-import { AppDispatch } from '../../services/store';
+import { useAppDispatch } from '../../utils/hooks';
 
 export const ConstructorItem: FC<TConstructorItem> = ({ item, index }) => {
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const ref = useRef<HTMLLIElement>(null);
 
     const handleClose = () => {

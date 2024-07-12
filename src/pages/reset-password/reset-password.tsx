@@ -1,16 +1,15 @@
 import { ChangeEvent, FC, SyntheticEvent, useState } from 'react';
-import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 import { Button, Input, PasswordInput } from "@ya.praktikum/react-developer-burger-ui-components";
 import styles from './reset-password.module.css';
 import { postResetPassword } from "../../services/actions/reset-password";
-import { AppDispatch } from '../../services/store';
 import { TResetPassword } from '../../types';
+import { useAppDispatch } from '../../utils/hooks';
 
 const defaultValue = { password: '', token: '' };
 
 export const ResetPasswordPage: FC = () => {
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     const [formValue, setFormValue] = useState<TResetPassword>(defaultValue);
 

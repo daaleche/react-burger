@@ -1,11 +1,10 @@
 import { FC } from "react";
-import { useSelector } from "react-redux";
 import styles from './order-detail.module.css';
 import image from '../../images/order.png';
-import { RootState } from "../../services/store";
+import { useAppSelector } from "../../utils/hooks";
 
 export const OrderDetails: FC = () => {
-    const { orderId } = useSelector((store: RootState) => store.orderDetails);
+    const { orderId } = useAppSelector(store => store.orderDetails);
 
     return (
         <>

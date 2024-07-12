@@ -1,16 +1,15 @@
 import { ChangeEvent, FC, SyntheticEvent, useState } from 'react'
-import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Input } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './forgot-password.module.css'
 import { postForgotPassword } from "../../services/actions/forgot-password";
-import { AppDispatch, RootState } from '../../services/store';
+import { useAppDispatch, useAppSelector } from '../../utils/hooks';
 
 export const ForgotPasswordPage: FC = () => {
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const { forgotPasswordSuccess, forgotPasswordFailed } = useSelector((store: RootState) => store.userData);
+    const { forgotPasswordSuccess, forgotPasswordFailed } = useAppSelector(store => store.userData);
 
     const [email, setEmail] = useState("");
 

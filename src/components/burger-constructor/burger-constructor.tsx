@@ -1,5 +1,4 @@
 import { FC, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
 import { useDrop } from "react-dnd";
 import { v4 as new_uuid } from "uuid";
@@ -10,16 +9,16 @@ import { Modal } from '../modal/modal'
 import { OrderDetails } from '../order-details/order-detail'
 import { ADD_INGREDIENT } from "../../services/actions/burger-constructor";
 import { CLOSE_ORDER_DETAIL_MODAL, postOrder } from "../../services/actions/order-details";
-import { AppDispatch, RootState } from "../../services/store";
 import { TIngredient } from "../../types";
+import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 
 export const BurgerConstructor: FC = () => {
-    const dispatch: AppDispatch = useDispatch();
+    const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const { ingredients, bun } = useSelector((store: RootState) => store.burgerConstructor);
-    const orderDetailModalIsOpen = useSelector((store: RootState) => store.orderDetails.modalIsOpen);
-    const isAuth = useSelector((store: RootState) => store.userData.isAuth);
+    const { ingredients, bun } = useAppSelector(store => store.burgerConstructor);
+    const orderDetailModalIsOpen = useAppSelector(store => store.orderDetails.modalIsOpen);
+    const isAuth = useAppSelector(store => store.userData.isAuth);
 
     const totalPrice = useMemo(() => {
         return ingredients.reduce((acc, p) => acc + p.price, 0)

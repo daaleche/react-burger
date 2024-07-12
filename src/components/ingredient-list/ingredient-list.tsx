@@ -1,13 +1,12 @@
 import { useMemo, useEffect, FC } from "react";
-import { useSelector } from "react-redux";
 import { useInView } from 'react-intersection-observer';
 import styles from './ingredient-list.module.css';
 import { IngredientCard } from '../ingredient-card/ingredient-card'
-import { RootState } from "../../services/store";
 import { TIngredientList } from "../../types";
+import { useAppSelector } from "../../utils/hooks";
 
 export const IngredientList: FC<TIngredientList> = ({ setActiveTab }) => {
-    const { ingredients } = useSelector((store: RootState) => store.burgerIngredients);
+    const { ingredients } = useAppSelector(store => store.burgerIngredients);
 
     const [bunRef, inViewBun] = useInView();
     const [sauceRef, inViewSauce] = useInView();

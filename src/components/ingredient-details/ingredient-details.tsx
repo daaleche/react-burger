@@ -1,15 +1,14 @@
 import { FC, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import styles from './ingredient-details.module.css';
 import { NutritionInfoItem } from './nutrition-info-item/nutrition-info-item'
 import { SELECT_INGREDIENT } from "../../services/actions/ingredient-details";
-import { RootState } from "../../services/store";
+import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 
 export const IngredientDetails: FC = () => {
-    const dispatch = useDispatch();
-    const { selectedIngredient } = useSelector((store: RootState) => store.ingredientDetails);
-    const { ingredients } = useSelector((store: RootState) => store.burgerIngredients);
+    const dispatch = useAppDispatch();
+    const { selectedIngredient } = useAppSelector(store => store.ingredientDetails);
+    const { ingredients } = useAppSelector(store => store.burgerIngredients);
     const { id } = useParams();
 
     useEffect(() => {
