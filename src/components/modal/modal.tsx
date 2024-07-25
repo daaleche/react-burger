@@ -26,7 +26,9 @@ export const Modal: FC<TModal> = ({ title, onClose, children }) => {
   return createPortal(
     <div className={styles.container}>
       <div className={styles.modal}>
-        <h2 className={styles.title}>{title}</h2>
+        {!!title && (
+          <h2 className={styles.title}>{title}</h2>
+        )}
         <span className={styles.close} onClick={onClose}>
           <CloseIcon type="primary" />
         </span>

@@ -1,0 +1,33 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.order_list {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 584px;
+    composes: pr-2 from global;
+}
+
+.list_item {
+    composes: mb-4 from global;
+}
+
+.heading {
+    composes: text_type_main-large from global;
+    margin: 40px 0 20px 0;
+}
+
+.scroller {
+    max-height: 70vh;
+    overflow-y: auto;
+    scrollbar-color: #8585AD #2F2F37;
+    scrollbar-width: thin;
+    overflow-x: hidden;
+    padding-left: 0;
+    composes: pr-2 from global;
+    list-style: none;
+  }

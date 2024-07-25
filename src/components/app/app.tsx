@@ -20,14 +20,15 @@ import {
 import { Modal } from '../modal/modal'
 import { IngredientDetails } from '../ingredient-details/ingredient-details';
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
+import { FeedPage } from "../../pages/feed/feed";
+import { OrderPage } from "../../pages/order/order";
 
 export const App: FC = () => {
   const dispatch = useAppDispatch();
   const location = useLocation();
   const navigate = useNavigate();
 
-  const modal = location.state && location.state.fromCardClick;
-
+  const prevLocation = location.state && location.state.prevLocation;
   const ingredientDetailModalIsOpen = useAppSelector(store => store.ingredientDetails.modalIsOpen);
 
   const handleClose = (e: SyntheticEvent) => {
@@ -46,7 +47,7 @@ export const App: FC = () => {
     <>
       <AppHeader />
 
-      <Routes location={ingredientDetailModalIsOpen ? modal : location}>
+      <Routes location={prevLocation || location}>
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<ProtectedRouteAuthorized element={<LoginPage />} />} />
         <Route path='/register' element={<ProtectedRouteAuthorized element={<RegisterPage />} />} />
@@ -54,8 +55,10 @@ export const App: FC = () => {
         <Route path='/reset-password' element={<ProtectedRouteAuthorized element={<ResetPasswordPage />} />} />
         <Route path='/profile' element={<ProtectedRouteNotAuthorized element={<ProfilePage />} />} />
         <Route path='/profile/orders' element={<ProtectedRouteNotAuthorized element={<ProfileOrdersPage />} />} />
+        <Route path='/profile/orders/:id' element={<ProtectedRouteNotAuthorized element={<OrderPage />} />} />
         <Route path="/ingredients/:id" element={<IngredientPage />} />
-
+        <Route path="/feed" element={<FeedPage />} />
+        <Route path="/feed/:id" element={<OrderPage />} />
       </Routes>
 
       {ingredientDetailModalIsOpen && (
@@ -63,6 +66,25 @@ export const App: FC = () => {
           <Route path="/ingredients/:id" element={
             <Modal title='Детали ингредиента' onClose={handleClose}>
               <IngredientDetails />
+            </Modal>} />
+        </Routes>
+      )}
+
+      {prevLocation && (
+        <Routes>
+          <Route path="/feed/:id" element={
+            <Modal onClose={handleClose}>
+              <OrderPage />
+            </Modal>} />
+        </Routes>
+      )}
+
+
+      {prevLocation && (
+        <Routes>
+          <Route path="/profile/orders/:id" element={
+            <Modal onClose={handleClose}>
+              <OrderPage />
             </Modal>} />
         </Routes>
       )}

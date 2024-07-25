@@ -1,0 +1,53 @@
+.dashboard {
+    composes: ml-15 pr-2 pt-25 from global;
+    box-sizing: border-box;
+    width: 580px;
+}
+
+.content {
+    composes: mb-15 from global;
+    display: flex;
+}
+
+.content_item {
+    composes: pr-9 from global;
+    width: 50%;
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    composes: text text_type_digits-default mt-6 from global;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-grow: 0;
+    max-height: 20vh;
+    overflow: hidden;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    composes: mb-15 from global;
+}
+
+.row__title {
+    composes: text text_type_main-medium from global;
+}
+
+.row__content {
+    composes: text text_type_digits-large from global;
+    text-shadow:
+        0px 0px 16px rgba(51, 51, 255, 0.25),
+        4px 0px 8px rgba(51, 51, 255, 0.25),
+        0px 4px 32px rgba(51, 51, 255, 0.4);
+}
+
+.ready {
+    color: var(--colors-interface-success);
+}
+
+.inprogress {
+    composes: mt-2 from global;
+}

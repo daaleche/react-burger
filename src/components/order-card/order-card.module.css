@@ -1,0 +1,89 @@
+.card {
+    composes: mt-4 p-6 from global;
+    color: #F2F2F3;
+    background-color: var(--background);
+    border-radius: var(--common-border-radius-s);
+}
+
+.header {
+    composes: mb-6 from global;
+    display: flex;
+    justify-content: space-between;
+}
+
+.id {
+    composes: text_type_digits-default from global;
+}
+
+.time {
+    composes: text_type_main-default from global;
+    color: var(--text-inactive-color);
+}
+
+.title {
+    composes: text_type_main-medium text mb-2 from global;
+    width: 100%;
+}
+
+.status {
+    composes: text text_type_main-default mb-6 from global;
+    color: var(--colors-interface-success);
+}
+
+.link {
+    text-decoration: none;
+}
+
+.price {
+    composes: text text_type_digits-default from global;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.price>svg {
+    margin-left: 5px;
+}
+
+.image_fill {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    position: relative;
+    background: linear-gradient(#131316, #131316) padding-box, linear-gradient(to right, #801ab2, #4c4cff) border-box;
+    border-radius: 100px;
+    border: 2px solid transparent;
+    height: 64px;
+    width: 64px;
+    margin-left: -20px;
+}
+
+.image_position {
+    position: relative;
+}
+
+.count_hidden {
+    left: 30%;
+    top: 30%;
+    position: absolute;
+    line-height: 34px;
+    font-size: 25px;
+    font-weight: bold;
+    composes: text text_type_main-default from global;
+}
+
+.images_selection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filling {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    padding: 0px;
+    margin: 12px 24px 24px 24px;
+}

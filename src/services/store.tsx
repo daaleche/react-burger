@@ -1,19 +1,29 @@
-/*import { applyMiddleware, legacy_createStore as createStore, compose } from "redux";
-import { thunk } from "redux-thunk";*/
 import { configureStore } from '@reduxjs/toolkit';
 import { rootReducer } from "./reducers/root-reducer";
+import { wsMiddleware } from './middleware/wsMiddleware';
+import {
+  WS_CONNECTION_CLOSED,
+  WS_CONNECTION_ERROR,
+  WS_CONNECTION_START,
+  WS_CONNECTION_SUCCESS,
+  WS_GET_ORDERS,
+  WS_SEND_ORDER
+} from './actions/ws';
 
-/*const composeEnhancers =
-  typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({})
-    : compose;
 
-const enhancer = composeEnhancers(applyMiddleware(thunk));
-
-export const store = createStore(rootReducer, enhancer);*/
+const wsActions = {
+  wsInit: WS_CONNECTION_START,
+  onOpen: WS_CONNECTION_SUCCESS,
+  onClose: WS_CONNECTION_CLOSED,
+  onError: WS_CONNECTION_ERROR,
+  onOrders: WS_GET_ORDERS,
+  onSendOrders: WS_SEND_ORDER,
+};
 
 export const store = configureStore({
-  reducer: rootReducer
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(wsMiddleware(wsActions))
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
