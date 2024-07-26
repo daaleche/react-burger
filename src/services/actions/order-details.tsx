@@ -1,5 +1,6 @@
 import { postOrderRequest } from "../../utils/api";
 import { AppDispatch } from "../store";
+import { CLEAR_INGREDIENTS } from "./burger-constructor";
 
 export const POST_ORDER_REQUEST = 'POST_ORDER_REQUEST';
 export const POST_ORDER_SUCCESS = 'POST_ORDER_SUCCESS';
@@ -49,6 +50,9 @@ export function postOrder(ids: Array<string>) {
         });
         dispatch({
           type: OPEN_ORDER_DETAIL_MODAL,
+        });
+        dispatch({
+          type: CLEAR_INGREDIENTS,
         });
       })
       .catch(() => {

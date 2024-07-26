@@ -18,7 +18,9 @@ export const OrderCard: FC<IOrderCard> = ({ item }) => {
     const { number, createdAt, name, status, ingredients } = item;
 
     const { ingredients: allIngredients } = useAppSelector(store => store.burgerIngredients);
-    const formattedIngredients = ingredients.map((id) => allIngredients.find((item) => item._id === id))
+    let formattedIngredients = ingredients
+        .map((id) => allIngredients.find((item) => item._id === id))
+        .filter((item) => item !== undefined);
 
     const price =
         formattedIngredients &&

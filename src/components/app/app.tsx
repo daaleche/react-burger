@@ -22,6 +22,7 @@ import { IngredientDetails } from '../ingredient-details/ingredient-details';
 import { useAppDispatch, useAppSelector } from "../../utils/hooks";
 import { FeedPage } from "../../pages/feed/feed";
 import { OrderPage } from "../../pages/order/order";
+import { Loader } from "../loader/loader";
 
 export const App: FC = () => {
   const dispatch = useAppDispatch();
@@ -30,6 +31,7 @@ export const App: FC = () => {
 
   const prevLocation = location.state && location.state.prevLocation;
   const ingredientDetailModalIsOpen = useAppSelector(store => store.ingredientDetails.modalIsOpen);
+  const { placeOrderRequest: isLoading } = useAppSelector(store => store.orderDetails);
 
   const handleClose = (e: SyntheticEvent) => {
     e.stopPropagation();
@@ -45,6 +47,7 @@ export const App: FC = () => {
 
   return (
     <>
+      {isLoading && <Loader />}
       <AppHeader />
 
       <Routes location={prevLocation || location}>

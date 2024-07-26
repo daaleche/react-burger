@@ -35,7 +35,5 @@ export function deleteCookie(name: string) {
 }
 
 export const calculatePrice = (ingredients: TIngredientData[]): number => {
-  return ingredients.reduce(function (prevValue, item) {
-    return prevValue + item.price;
-  }, 0);
+  return ingredients.reduce((prevValue, item) => prevValue + item.price, 0);
 }
