@@ -26,10 +26,12 @@ export const OrderCard: FC<IOrderCard> = ({ item }) => {
         formattedIngredients &&
         calculatePrice(formattedIngredients as TIngredientData[])
 
+    const linkTo = `${location.pathname}/${number}`;
+
     return (
         <Link
-            to={`${location.pathname}/${number}`}
-            state={{ prevLocation: location }}
+            to={linkTo}
+            state={{ prevLocation: linkTo }}
             className={styles.link}
         >
             {<article className={styles.card}>
