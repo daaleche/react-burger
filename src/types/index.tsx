@@ -1,4 +1,12 @@
 import { ReactNode } from "react";
+import {
+    WS_CONNECTION_CLOSED,
+    WS_CONNECTION_ERROR,
+    WS_CONNECTION_START,
+    WS_CONNECTION_SUCCESS,
+    WS_GET_ORDERS,
+    WS_SEND_ORDER
+} from "../services/actions/ws";
 
 export type TIngredientData = {
     _id: string;
@@ -74,4 +82,30 @@ export type TProfile = {
     name: string
     email: string
     password: string
+}
+
+export type TOrder = {
+    _id: string;
+    ingredients: string[];
+    status: string;
+    name: string;
+    createdAt: string;
+    updatedAt: string;
+    number: number;
+};
+
+export type TGetOrdersResponse = {
+    success: boolean;
+    orders: TOrder[];
+    total: number;
+    totalToday: number;
+}
+
+export type TWSOrderActions = {
+    wsInit: typeof WS_CONNECTION_START,
+    onOpen: typeof WS_CONNECTION_SUCCESS,
+    onClose: typeof WS_CONNECTION_CLOSED,
+    onError: typeof WS_CONNECTION_ERROR,
+    onOrders: typeof WS_GET_ORDERS,
+    onSendOrders: typeof WS_SEND_ORDER,
 }

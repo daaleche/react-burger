@@ -32,8 +32,8 @@ export const BurgerConstructor: FC = () => {
     function handlePostOrder() {
         if (isAuth) {
             if (bun) {
-                const orderIds = [bun._id, bun._id, ...ingredients.map((item) => item._id)];
-                dispatch(postOrder(orderIds));
+                const orderIds = [bun._id, ...ingredients.map((item) => item._id), bun._id];
+                dispatch(postOrder(orderIds))
             }
         }
         else {

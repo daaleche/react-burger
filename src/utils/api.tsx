@@ -107,3 +107,7 @@ export const logoutApi = () => {
         body: JSON.stringify({ token: localStorage.getItem('refreshToken') })
     })
 }
+
+export function getOrderByNumber(number: string) {
+    return request(`${BASE_URL}/orders/` + number)
+}

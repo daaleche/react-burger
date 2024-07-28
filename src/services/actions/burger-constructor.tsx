@@ -3,6 +3,7 @@ import { TIngredient } from "../../types";
 export const ADD_INGREDIENT = 'ADD_INGREDIENT';
 export const DELETE_INGREDIENT = 'DELETE_INGREDIENT';
 export const MOVE_INGREDIENT = 'MOVE_INGREDIENT';
+export const CLEAR_INGREDIENTS = 'CLEAR_INGREDIENTS';
 
 export interface IAddIngredientAction {
     readonly type: typeof ADD_INGREDIENT;
@@ -19,8 +20,12 @@ export interface IMoveIngredientAction {
     readonly dragIndex: number;
     readonly hoverIndex: number;
 }
+export interface IClearConstructor {
+    readonly type: typeof CLEAR_INGREDIENTS;
+}
 
 export type TBurgerConstructorActions =
     IAddIngredientAction |
     IDeleteIngredientAction |
-    IMoveIngredientAction;
+    IMoveIngredientAction |
+    IClearConstructor;
