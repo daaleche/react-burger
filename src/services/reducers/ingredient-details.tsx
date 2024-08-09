@@ -12,7 +12,7 @@ type TIngredientDetailsState = {
     modalIsOpen: boolean;
 }
 
-const initialState: TIngredientDetailsState = {
+export const initialState: TIngredientDetailsState = {
     selectedIngredient: null,
     modalIsOpen: false,
 };

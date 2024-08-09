@@ -52,7 +52,7 @@ export const BurgerConstructor: FC = () => {
     });
 
     return (
-        <section className={styles.main} ref={dropRef}>
+        <section className={styles.main} ref={dropRef} data-test="constructor">
             <div className={styles.element}>
                 {bun &&
                     <ConstructorElement

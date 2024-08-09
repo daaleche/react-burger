@@ -29,7 +29,7 @@ export const Modal: FC<TModal> = ({ title, onClose, children }) => {
         {!!title && (
           <h2 className={styles.title}>{title}</h2>
         )}
-        <span className={styles.close} onClick={onClose}>
+        <span className={styles.close} onClick={onClose} data-test="close-icon">
           <CloseIcon type="primary" />
         </span>
         {children}

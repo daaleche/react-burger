@@ -36,7 +36,7 @@ export const IngredientCard: FC<TIngredientCard> = ({ item }) => {
         : counts ? counts[item._id] : 0;
 
     return (
-        <article className={styles.item} key={item._id} onClick={handleOpenModal} ref={dragRef}>
+        <article className={styles.item} key={item._id} onClick={handleOpenModal} ref={dragRef} data-test-id={item._id}>
             {count > 0 && <Counter count={count} />}
             <img className={styles.image} src={item.image} alt={item.name} />
             <span className={styles.price}>

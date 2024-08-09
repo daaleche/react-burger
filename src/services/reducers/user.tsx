@@ -43,7 +43,7 @@ import {
 } from '../actions/profile'
 import { TProfile } from '../../types';
 
-type TAccessActions =
+export type TAccessActions =
     | TRegisterActions
     | TLoginActions
     | TForgotPasswordActions
@@ -74,7 +74,7 @@ type TUserState = {
     logoutFailed: boolean;
 }
 
-const initialState: TUserState = {
+export const initialState: TUserState = {
     isAuth: false,
     user: {
         name: '',

@@ -14,7 +14,7 @@ type TOrderDetailsState = {
     modalIsOpen: boolean;
 }
 
-const initialState: TOrderDetailsState = {
+export const initialState: TOrderDetailsState = {
     orderId: '',
     placeOrderRequest: false,
     placeOrderFailed: false,
