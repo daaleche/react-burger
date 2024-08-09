@@ -10,7 +10,7 @@ export const LoginPage: FC = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const { loginSuccess, loginFailed } = useAppSelector(store => store.userData);
+    const { loginFailed } = useAppSelector(store => store.userData);
     const [form, setForm] = useState<TLogin>({ email: '', password: '' })
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -22,11 +22,11 @@ export const LoginPage: FC = () => {
 
     const onSubmit = (e: SyntheticEvent) => {
         e.preventDefault();
-        dispatch(postLogin(form))
-    }
-
-    if (loginSuccess) {
-        navigate('/');
+        dispatch(postLogin(form)).then(result => {
+            if (result && result.success) {
+                navigate("/")
+            }
+        });
     }
 
     return (
@@ -41,12 +41,14 @@ export const LoginPage: FC = () => {
                     onChange={onChange}
                     error={loginFailed}
                     autoComplete='on'
+                    data-test="email"
                     onPointerEnterCapture={undefined}
                     onPointerLeaveCapture={undefined} />
                 <PasswordInput
                     name='password'
                     value={form.password}
                     onChange={onChange}
+                    data-test="password"
                     autoComplete='on' />
                 <span>
                     <Button htmlType="submit">Войти</Button>
