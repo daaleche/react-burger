@@ -2,7 +2,7 @@ import user from '../fixtures/user.json';
 
 describe('ConstructorPage', () => {
     beforeEach('Запуск приложения', () => {
-        cy.visit('http://localhost:3000');
+        cy.visit('');
     });
 
     it('Перетаскиваение ингредиентов', () => {
