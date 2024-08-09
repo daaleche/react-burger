@@ -41,13 +41,7 @@ Cypress.Commands.add('start', () => {
     cy.visit('http://localhost:3000');
 })
 
-/*Cypress.Commands.add('startCheck', () => {
-    cy.visit('');
-    cy.contains('Соберите бургер');
-})*/
-
 Cypress.Commands.add('dragDrop', (id) => {
-    //cy.get('div').contains(label).trigger('dragstart');
     cy.get(`[data-test-id="${id}"]`).trigger('dragstart');
     cy.get('[data-test="constructor"]').trigger('drop');
 })
