@@ -26,11 +26,11 @@ export type TLoginActions =
     | ILoginFailedAction;
 
 export function postLogin(data: TLogin) {
-    return function (dispatch: AppDispatch) {
+    return async function (dispatch: AppDispatch) {
         dispatch({
             type: POST_LOGIN_REQUEST
         });
-        loginApi(data)
+        const res = loginApi(data)
             .then((res) => {
                 dispatch({
                     type: POST_LOGIN_SUCCESS,
@@ -39,11 +39,15 @@ export function postLogin(data: TLogin) {
 
                 setCookie('accessToken', res.accessToken);
                 localStorage.setItem('refreshToken', res.refreshToken);
+
+                return res;
             })
             .catch((err) => {
                 dispatch({
                     type: POST_LOGIN_FAILED
                 });
             })
+
+        return res;
     };
 }
